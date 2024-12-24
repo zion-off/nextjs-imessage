@@ -28,3 +28,12 @@ Navigate to `localhost:3000` and authenticate to send and receive messages.
 ## Tools
 
 Built with Next.js 15 and Tailwind CSS.
+
+## Demo
+
+<img width="640" height="480" src="./demo/login.png">
+
+<video width="640" height="480" autoplay >
+  <source src="./demo/chat.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
