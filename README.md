@@ -31,5 +31,5 @@ Built with Next.js 15 and Tailwind CSS.
 
 ## Demo
 
-<img width="640" height="480" src="./demo/login.png">
-<img width="640" height="480" src="./demo/chat.png">
+<img src="./demo/login.png">
+<img src="./demo/chat.png">
