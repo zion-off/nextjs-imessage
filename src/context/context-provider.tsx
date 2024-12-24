@@ -1,5 +1,6 @@
 "use client";
 
+import { MessageType } from "@/types/message";
 import { createContext, useContext, useState } from "react";
 
 interface AppContextType {
@@ -13,6 +14,10 @@ interface AppContextType {
   toggleLoading: () => void;
   users: string[];
   updateUsers: (newUsers: string[]) => void;
+  messages: MessageType[];
+  updateMessages: (newMessages: MessageType[]) => void;
+  messagesSet: Set<number>;
+  updateMessagesSet: (newMessageID: number) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -41,6 +46,14 @@ export default function AppContextProvider({
   const updateUsers = function (newUsers: string[]) {
     setUsers(newUsers);
   };
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const updateMessages = function (newMessages: MessageType[]) {
+    setMessages(newMessages);
+  };
+  const [messagesSet, setMessagesSet] = useState(new Set<number>());
+  const updateMessagesSet = function (newMessageID: number) {
+    setMessagesSet((prev) => new Set(prev.add(newMessageID)));
+  };
   const value = {
     token,
     updateToken,
@@ -52,6 +65,10 @@ export default function AppContextProvider({
     toggleLoading,
     users,
     updateUsers,
+    messages,
+    updateMessages,
+    messagesSet,
+    updateMessagesSet,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
