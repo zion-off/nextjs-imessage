@@ -8,7 +8,13 @@ pip install requirements.txt
 uvicorn main:app --reload
 ```
 
-Then start the client (this repository):
+Add an env file to the root of your fork of this repository:
+
+```
+NEXT_PUBLIC_BACKEND=localhost:8000
+```
+
+Then start the client:
 
 ```
 npm install

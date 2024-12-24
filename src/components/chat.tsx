@@ -20,7 +20,7 @@ export default function Chat() {
 
   function handlePostMessage() {
     try {
-      fetch("http://localhost:8000/api/messages", {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/messages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function Chat() {
   async function getMessages() {
     try {
       let res = await fetch(
-        `http://localhost:8000/api/messages?skip=${messagesSet.size}`
+        `${process.env.NEXT_PUBLIC_BACKEND}/api/messages?skip=${messagesSet.size}`
       );
       let data = await res.json();
       if (data.length > 0) {

@@ -14,7 +14,7 @@ function Login({ changeForm }: { changeForm: () => void }) {
 
   async function getUsers() {
     try {
-      const response = await fetch("http://localhost:8000/api/users");
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/users`);
       const data = await response.json();
       let users = data.map((user: UserType) => user.name);
       updateUsers(users);
@@ -29,8 +29,8 @@ function Login({ changeForm }: { changeForm: () => void }) {
     setStatus("");
     try {
       // simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      let res = await fetch("http://localhost:8000/api/users/login", {
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
+      let res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -116,8 +116,8 @@ function Register({ changeForm }: { changeForm: () => void }) {
     setStatus("");
     try {
       // simulate network delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      let res = await fetch("http://localhost:8000/api/users/", {
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
+      let res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/users/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
