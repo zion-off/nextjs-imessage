@@ -18,25 +18,31 @@ export default function Chat() {
   } = useAppContext();
   const [message, setMessage] = useState("");
 
-  function handlePostMessage() {
+  async function handlePostMessage() {
     try {
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/messages`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: message,
-          user_id: userID,
-          token: token,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND}/api/messages`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: message,
+            user_id: userID,
+            token: token,
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
     } catch (error) {
       console.error(error);
     }
   }
 
-  async function getMessages() {
+  const getMessages = async () => {
     try {
       let res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND}/api/messages?skip=${messagesSet.size}`
@@ -49,26 +55,22 @@ export default function Chat() {
             updateMessagesSet(message.id);
             return message;
           });
-
         updateMessages([...messages, ...newMessages]);
       }
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
       let chat = document.querySelector(".grow");
       chat?.scrollTo({
         top: chat.scrollHeight,
         behavior: "smooth",
       });
-      getMessages();
-    }, 1000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
+  useEffect(() => {
+    const interval = setInterval(getMessages, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [messages, messagesSet, updateMessages, updateMessagesSet]);
 
   return (
     <>
