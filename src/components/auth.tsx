@@ -221,7 +221,7 @@ export default function Auth() {
           className="flex"
         />
       </div>
-      <h2 className="font-bold text-center">iMessage</h2>
+      <h2 className="font-medium text-center">iMessage</h2>
       {loginVisible ? (
         <Login changeForm={handleForm} />
       ) : (

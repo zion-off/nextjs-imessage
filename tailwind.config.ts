@@ -9,6 +9,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        regular: ["SF-Pro-Display-Regular", "Helvetica", "sans-serif"],
+        medium: ["SF-Pro-Display-Medium", "Helvetica", "sans-serif"],
+        bold: ["SF-Pro-Display-Bold", "Helvetica", "sans-serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
