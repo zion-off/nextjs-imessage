@@ -14,6 +14,9 @@ export default {
         medium: ["SF-Pro-Display-Medium", "Helvetica", "sans-serif"],
         bold: ["SF-Pro-Display-Bold", "Helvetica", "sans-serif"],
       },
+      fontSize: {
+        xxs: ['0.5rem', '0.5rem'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
