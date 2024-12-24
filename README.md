@@ -1,5 +1,7 @@
 # React iMessage Clone
 
+## Running locally
+
 First, setup this [server](https://github.com/zion-off/fastapi-sqlite-server). Clone the repository and run these commands:
 
 ```
@@ -22,3 +24,7 @@ npm run dev
 ```
 
 Navigate to `localhost:3000` and authenticate to send and receive messages.
+
+## Tools
+
+Built with Next.js 15 and Tailwind CSS.
