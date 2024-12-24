@@ -75,7 +75,9 @@ export default function Chat() {
   return (
     <>
       <div className="md:w-2/3 w-9/12 h-2/3 bg-windowBg rounded-lg flex flex-col overflow-clip shadow-2xl text-xs backdrop-blur-lg">
-        <ChatHeader />
+        <div className="flex-none">
+          <ChatHeader />
+        </div>
         {/* messages */}
         <div className="grow overflow-y-scroll flex flex-col px-4 gap-2 py-2">
           {messages.length > 0 &&
@@ -96,19 +98,21 @@ export default function Chat() {
             })}
         </div>
         {/* input */}
-        <textarea
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" && !e.shiftKey) {
-              e.preventDefault();
-              handlePostMessage();
-              setMessage("");
-            }
-          }}
-          className="h-8 m-4 outline-fieldOutline/20 outline-1 outline rounded-3xl px-4 py-2 focus:outline-fieldOutline/40 bg-windowBg resize-none"
-          placeholder="iMessage"
-        />
+        <div className="flex-none p-4">
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handlePostMessage();
+                setMessage("");
+              }
+            }}
+            className="w-full h-8 outline-fieldOutline/20 outline-1 outline rounded-3xl px-4 py-2 focus:outline-fieldOutline/40 bg-windowBg resize-none"
+            placeholder="iMessage"
+          />
+        </div>
       </div>
     </>
   );

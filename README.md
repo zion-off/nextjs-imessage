@@ -8,7 +8,7 @@ pip install requirements.txt
 uvicorn main:app --reload
 ```
 
-Add an env file to the root of your fork of this repository:
+Add an env file to the root of your clone of this repository with the following contents:
 
 ```
 NEXT_PUBLIC_BACKEND=localhost:8000
