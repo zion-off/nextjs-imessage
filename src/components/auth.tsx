@@ -106,7 +106,7 @@ function Register({ changeForm }: { changeForm: () => void }) {
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState("Success! Proceed to login.");
+  const [status, setStatus] = useState("");
   const { updateUsername, updateUserID, loading, toggleLoading } =
     useAppContext();
 
