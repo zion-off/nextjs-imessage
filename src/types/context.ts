@@ -15,6 +15,7 @@ export type AppContextType = {
   updateMessages: (newMessages: MessageType[]) => void;
   messagesSet: Set<number>;
   updateMessagesSet: (newMessageID: number) => void;
+  deleteMessage: (messageID: number) => void;
   menuVisible: number | null;
   setSelectedMessage: (id: number | null) => void;
   menuPosition: { x: number; y: number };

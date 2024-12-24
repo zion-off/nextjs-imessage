@@ -35,9 +35,24 @@ export default function AppContextProvider({
     setMessages(newMessages);
   };
   const [messagesSet, setMessagesSet] = useState(new Set<number>());
-  const updateMessagesSet = function (newMessageID: number) {
-    setMessagesSet((prev) => new Set(prev.add(newMessageID)));
+  const updateMessagesSet = (newMessageID: number) => {
+    setMessagesSet((prev) => new Set([...prev, newMessageID]));
   };
+  const deleteMessage = (messageID: number) => {
+    setMessagesSet((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(messageID);
+      return newSet;
+    });
+    const index = messages.findIndex((message) => message.id === messageID);
+    if (index !== -1) {
+      const updatedMessages = [...messages];
+      updatedMessages.splice(index, 1);
+      setMessages(updatedMessages);
+    }
+    setMenuVisible(null);
+  };
+
   const [menuVisible, setMenuVisible] = useState<number | null>(null);
   const setSelectedMessage = function (id: number | null) {
     setMenuVisible(id);
@@ -61,6 +76,7 @@ export default function AppContextProvider({
     updateMessages,
     messagesSet,
     updateMessagesSet,
+    deleteMessage,
     menuVisible,
     setSelectedMessage,
     menuPosition,
