@@ -23,6 +23,15 @@ export default {
         button: "#1675db",
         inputOutline: "#3e79a4",
       },
+      keyframes: {
+        appear: {
+          "0%": { transform: "scale(0)" },
+          "100%": { transform: "scale(1)" },
+        },
+      },
+      animation: {
+        appear: "appear 0.3s ease-in-out",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

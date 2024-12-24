@@ -75,7 +75,7 @@ export default function Chat() {
       <div className="md:w-2/3 w-9/12 h-2/3 bg-windowBg rounded-lg flex flex-col overflow-clip shadow-2xl text-xs backdrop-blur-lg">
         <ChatHeader />
         {/* messages */}
-        <div className="grow flex flex-col px-4 gap-2 py-2">
+        <div className="grow overflow-y-scroll flex flex-col px-4 gap-2 py-2">
           {messages.length > 0 &&
             messages.map((message: MessageType) => {
               if (message.user_id === Number(userID)) {
