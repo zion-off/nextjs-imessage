@@ -33,3 +33,7 @@ Built with Next.js 15 and Tailwind CSS.
 
 <img src="./demo/login.png">
 <img src="./demo/chat.png">
+
+Right click on a message you sent to see additional options.
+
+<img src="./demo/menu.png">
