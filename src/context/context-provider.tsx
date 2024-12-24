@@ -1,24 +1,8 @@
 "use client";
 
 import { MessageType } from "@/types/message";
+import { AppContextType } from "@/types/context";
 import { createContext, useContext, useState } from "react";
-
-interface AppContextType {
-  token: string;
-  updateToken: (newToken: string) => void;
-  username: string;
-  updateUsername: (newUsername: string) => void;
-  userID: string;
-  updateUserID: (newID: string) => void;
-  loading: boolean;
-  toggleLoading: () => void;
-  users: string[];
-  updateUsers: (newUsers: string[]) => void;
-  messages: MessageType[];
-  updateMessages: (newMessages: MessageType[]) => void;
-  messagesSet: Set<number>;
-  updateMessagesSet: (newMessageID: number) => void;
-}
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 export default function AppContextProvider({
@@ -54,6 +38,14 @@ export default function AppContextProvider({
   const updateMessagesSet = function (newMessageID: number) {
     setMessagesSet((prev) => new Set(prev.add(newMessageID)));
   };
+  const [menuVisible, setMenuVisible] = useState<number | null>(null);
+  const setSelectedMessage = function (id: number | null) {
+    setMenuVisible(id);
+  };
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const setSelectedMenuPosition = function (x: number, y: number) {
+    setMenuPosition({ x: x, y: y });
+  };
   const value = {
     token,
     updateToken,
@@ -69,6 +61,10 @@ export default function AppContextProvider({
     updateMessages,
     messagesSet,
     updateMessagesSet,
+    menuVisible,
+    setSelectedMessage,
+    menuPosition,
+    setSelectedMenuPosition,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }

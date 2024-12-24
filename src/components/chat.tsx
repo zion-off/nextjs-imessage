@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useAppContext } from "@/context/context-provider";
 import ChatHeader from "./chat-header";
 import SendBubble from "./send-bubble";
+import Menu from "./menu";
 import ReceiveBubble from "./receive-bubble";
 import { MessageType } from "@/types/message";
 
@@ -15,6 +16,8 @@ export default function Chat() {
     updateMessages,
     messagesSet,
     updateMessagesSet,
+    menuVisible,
+    setSelectedMessage,
   } = useAppContext();
   const [message, setMessage] = useState("");
 
@@ -74,7 +77,10 @@ export default function Chat() {
 
   return (
     <>
-      <div className="md:w-2/3 w-9/12 h-2/3 bg-windowBg rounded-lg flex flex-col overflow-clip shadow-2xl text-xs backdrop-blur-lg">
+      <div
+        className="md:w-2/3 w-9/12 h-2/3 bg-windowBg rounded-lg flex flex-col overflow-clip shadow-2xl text-xs backdrop-blur-lg"
+        onClick={() => setSelectedMessage(null)}
+      >
         <div className="flex-none">
           <ChatHeader />
         </div>
@@ -84,7 +90,11 @@ export default function Chat() {
             messages.map((message: MessageType) => {
               if (message.user_id === Number(userID)) {
                 return (
-                  <SendBubble key={message.id} message={message.message} />
+                  <SendBubble
+                    key={message.id}
+                    message={message.message}
+                    id={message.id}
+                  />
                 );
               } else {
                 return (
@@ -114,6 +124,7 @@ export default function Chat() {
           />
         </div>
       </div>
+      {menuVisible && <Menu />}
     </>
   );
 }
