@@ -1,4 +1,7 @@
-export default function ChatHeader({ users }: { users: string[] }) {
+import { useAppContext } from "@/context/context-provider";
+
+export default function ChatHeader() {
+  const { users } = useAppContext();
   return (
     <>
       <div className="w-full h-14 bg-windowBar flex px-5 items-center gap-4">
@@ -7,7 +10,9 @@ export default function ChatHeader({ users }: { users: string[] }) {
           <div className="w-2 h-2 rounded-full bg-minimize" />
           <div className="w-2 h-2 rounded-full bg-maximize" />
         </div>
-        <p className="truncate">{users.map((user: string) => user).join(", ")}</p>
+        <p className="truncate">
+          {users.map((user: string) => user).join(", ")}
+        </p>
       </div>
     </>
   );
