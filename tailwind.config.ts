@@ -15,7 +15,7 @@ export default {
         bold: ["SF-Pro-Display-Bold", "Helvetica", "sans-serif"],
       },
       fontSize: {
-        xxs: ['0.5rem', '0.5rem'],
+        xxs: ["0.5rem", "0.5rem"],
       },
       colors: {
         background: "var(--background)",
@@ -36,9 +36,14 @@ export default {
           "0%": { transform: "scale(0)" },
           "100%": { transform: "scale(1)" },
         },
+        scaleUp: {
+          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
       },
       animation: {
         appear: "appear 0.3s ease-in-out",
+        'scale-up': 'scaleUp 0.3s ease-in-out',
       },
     },
   },

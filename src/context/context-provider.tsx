@@ -50,17 +50,24 @@ export default function AppContextProvider({
       updatedMessages.splice(index, 1);
       setMessages(updatedMessages);
     }
-    setMenuVisible(null);
+    setSelectedMessage(null);
   };
-
-  const [menuVisible, setMenuVisible] = useState<number | null>(null);
-  const setSelectedMessage = function (id: number | null) {
-    setMenuVisible(id);
+  const [selectedMessage, setSelectedMessage] = useState<number | null>(null);
+  const setSelectedMessageID = function (id: number | null) {
+    setSelectedMessage(id);
   };
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
-  const setSelectedMenuPosition = function (x: number, y: number) {
+  const updateMenuPosition = function (x: number, y: number) {
     setMenuPosition({ x: x, y: y });
   };
+  const [editingMessage, setEditingMessage] = useState(false);
+  const toggleEditing = () => {
+    if (editingMessage) {
+      setSelectedMessage(null);
+    }
+    setEditingMessage((prev) => !prev);
+  };
+
   const value = {
     token,
     updateToken,
@@ -77,10 +84,12 @@ export default function AppContextProvider({
     messagesSet,
     updateMessagesSet,
     deleteMessage,
-    menuVisible,
-    setSelectedMessage,
+    selectedMessage,
+    setSelectedMessageID,
     menuPosition,
-    setSelectedMenuPosition,
+    updateMenuPosition,
+    editingMessage,
+    toggleEditing,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }

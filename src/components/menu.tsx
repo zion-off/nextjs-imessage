@@ -1,13 +1,19 @@
 import { useAppContext } from "@/context/context-provider";
 
 export default function Menu() {
-  const { userID, token, menuVisible, menuPosition, deleteMessage } =
-    useAppContext();
+  const {
+    userID,
+    token,
+    selectedMessage,
+    menuPosition,
+    deleteMessage,
+    toggleEditing,
+  } = useAppContext();
 
   async function handleDelete() {
     try {
       await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND}/api/messages/${menuVisible}`,
+        `${process.env.NEXT_PUBLIC_BACKEND}/api/messages/${selectedMessage}`,
         {
           method: "DELETE",
           headers: {
@@ -15,13 +21,13 @@ export default function Menu() {
           },
           body: JSON.stringify({
             user_id: userID,
-            message_id: menuVisible,
+            message_id: selectedMessage,
             token: token,
           }),
         }
       );
-      if (menuVisible) {
-        deleteMessage(menuVisible);
+      if (selectedMessage) {
+        deleteMessage(selectedMessage);
       }
     } catch (error) {
       console.error(error);
@@ -38,7 +44,9 @@ export default function Menu() {
       <li className="p-1" onClick={handleDelete}>
         Undo send
       </li>
-      <li className="p-1">Edit message</li>
+      <li className="p-1" onClick={toggleEditing}>
+        Edit message
+      </li>
     </ul>
   );
 }

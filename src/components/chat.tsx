@@ -16,8 +16,10 @@ export default function Chat() {
     updateMessages,
     messagesSet,
     updateMessagesSet,
-    menuVisible,
-    setSelectedMessage,
+    selectedMessage,
+    setSelectedMessageID,
+    editingMessage,
+    toggleEditing,
   } = useAppContext();
   const [message, setMessage] = useState("");
 
@@ -79,7 +81,12 @@ export default function Chat() {
     <>
       <div
         className="md:w-2/3 w-9/12 h-2/3 bg-windowBg rounded-lg flex flex-col overflow-clip shadow-2xl text-xs backdrop-blur-lg"
-        onClick={() => setSelectedMessage(null)}
+        onClick={() => {
+          setSelectedMessageID(null);
+          if (editingMessage) {
+            toggleEditing();
+          }
+        }}
       >
         <div className="flex-none">
           <ChatHeader />
@@ -124,7 +131,7 @@ export default function Chat() {
           />
         </div>
       </div>
-      {menuVisible && <Menu />}
+      {selectedMessage && !editingMessage && <Menu />}
     </>
   );
 }

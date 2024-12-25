@@ -37,3 +37,5 @@ Built with Next.js 15 and Tailwind CSS.
 Right click on a message you sent to see additional options.
 
 <img src="./demo/menu.png">
+
+To edit a message, type in the new message and press enter. To cancel editing, press escape.
